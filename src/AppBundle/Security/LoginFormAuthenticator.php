@@ -9,15 +9,18 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use AppBundle\Form\LoginForm;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Routing\RouterInterface;
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
   private $formFactory;
-  private $em;  
+  private $em; 
+  private $router;
 
 
-  public function __construct(FormFactoryInterface $formFactory, EntityManager $em) {
+  public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router) {
     $this->formFactory = $formFactory;
     $this->em = $em;
+    $this->router = $router;
   }
 
 
@@ -53,7 +56,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
   }
   
   public function getLoginUrl() {
-    
+    return $this->router->generate('security_login');  
   }
   
   public function getDefaultSuccessRedirectUrl() {
