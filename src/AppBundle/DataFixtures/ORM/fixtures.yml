@@ -19,3 +19,8 @@ AppBundle\Entity\SubFamily:
     subfamily_{1..10}:
         # use some fake data for this
         name: <lastName()>
+        
+AppBundle\Entity\User:
+    user_{1..10}:
+        # use some fake data for this
+        email: weaverryan+<current()>@gmail.com        
