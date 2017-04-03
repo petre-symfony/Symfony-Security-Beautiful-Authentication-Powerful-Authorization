@@ -3,8 +3,23 @@
 namespace AppBundle\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="user")
+ */
 class User implements UserInterface{
+  /**
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   * @ORM\Column(type="integer")
+   */
+  private $id;
+  
+  /**
+   * @ORM\Column(type="string", unique=true)
+   */
   private $email;
   
   public function getUsername() {
