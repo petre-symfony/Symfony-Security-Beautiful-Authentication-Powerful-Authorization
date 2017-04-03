@@ -6,8 +6,17 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Form\FormFactoryInterface;
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
+  private $formFactory;
+
+
+  public function __construct(FormFactoryInterface $formFactory) {
+    $this->formFactory = $formFactory;
+  }
+
+
   public function getCredentials(Request $request){
     $isLoginSubmit = $request->getPathInfo() == '/login' && $request->isMethod('POST');
     IF (!$isLoginSubmit){
