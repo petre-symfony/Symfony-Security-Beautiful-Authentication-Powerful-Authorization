@@ -43,7 +43,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
   }
   
   public function checkCredentials($credentials, \UserInterface $user) {
-    ;
+    $password = $credentials['_password'];
+    
+    if ($password == 'iliketurtles'){
+      return true;
+    }
+    
+    return false;
   }
   
   public function getLoginUrl() {
