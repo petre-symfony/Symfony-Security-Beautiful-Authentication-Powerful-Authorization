@@ -51,7 +51,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
     return $this->em->getRepository('AppBundle:User')->findOneBy(['email' => $username]);
   }
   
-  public function checkCredentials($credentials, \UserInterface $user) {
+  public function checkCredentials($credentials, UserInterface $user) {
     $password = $credentials['_password'];
     
     if ($password == 'iliketurtles'){
@@ -65,11 +65,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
     return $this->router->generate('security_login');  
   }
   
+  
   /**
   public function getDefaultSuccessRedirectUrl() {
     return $this->router->generate('homepage');  
   }
-   */
+  */ 
+  
   
   public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey){
     // if the user hits a secure page and start() was called, this was
@@ -82,4 +84,5 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
 
     return new RedirectResponse($targetPath);
   }
+   
 }
