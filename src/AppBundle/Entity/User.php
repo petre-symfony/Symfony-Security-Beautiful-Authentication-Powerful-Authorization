@@ -30,6 +30,13 @@ class User implements UserInterface{
    */
   private $password;
   
+  /**
+   * A non-persisted field that's used to create the encoded password
+   * 
+   * @var string
+   */
+  private $plainPassword;
+  
   public function getUsername() {
     return $this->email;
   }
@@ -41,6 +48,12 @@ class User implements UserInterface{
   }
   public function setPassword($password){
     $this->password = $password;
+  }
+  public function getPlainPassword(){
+    return $this->plainPassword;
+  }
+  public function setPlainPassword($plainPassword){
+    return $this->plainPassword = $plainPassword;
   }
 
   public function getSalt() {
