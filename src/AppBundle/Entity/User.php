@@ -22,6 +22,14 @@ class User implements UserInterface{
    */
   private $email;
   
+  /**
+   * The encoded password
+   * 
+   * @ORM\Column(type="string")
+   * 
+   */
+  private $password;
+  
   public function getUsername() {
     return $this->email;
   }
@@ -29,8 +37,12 @@ class User implements UserInterface{
     return ['ROLE_USER'];
   }
   public function getPassword() {
-    
+    return $this->password;  
   }
+  public function setPassword($password){
+    $this->password = $password;
+  }
+
   public function getSalt() {
     
   }
