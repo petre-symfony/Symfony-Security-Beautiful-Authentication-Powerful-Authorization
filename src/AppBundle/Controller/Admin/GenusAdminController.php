@@ -7,6 +7,7 @@ use AppBundle\Form\GenusFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+USE Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/admin")
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 class GenusAdminController extends Controller {
   /**
    * @Route("/genus", name="admin_genus_list")
+   * @Security("is_granted('ROLE_ADMIN')")
    */
   public function indexAction() {
     $this->denyAccessUnlessGranted('ROLE_ADMIN');
