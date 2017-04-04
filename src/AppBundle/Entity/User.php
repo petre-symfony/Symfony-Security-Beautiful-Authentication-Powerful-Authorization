@@ -37,6 +37,11 @@ class User implements UserInterface{
    */
   private $plainPassword;
   
+  /**
+   * @ORM\Column(type="json")
+   */
+  private $roles = [];
+  
   public function getUsername() {
     return $this->email;
   }
