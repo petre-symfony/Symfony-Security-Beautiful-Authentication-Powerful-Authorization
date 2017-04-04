@@ -7,12 +7,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Form\FormFactoryInterface;
-use AppBundle\Form\LoginForm;
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Core\Security;
+use AppBundle\Form\LoginForm;
+use Doctrine\ORM\EntityManager;
+
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
   
@@ -41,6 +43,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator{
     $form->handleRequest($request);
     
     $data = $form->getData();
+    $request->getSession()->set(Security::LAST_USERNAME, $data['_username']);
     
     return $data;
   }
