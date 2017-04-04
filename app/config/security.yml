@@ -28,3 +28,6 @@ security:
           - app.security.login_form_authenticator
       logout:
         path: /logout
+        
+  access_control:
+    - { path: ^/admin, roles: ROLE_USER }
