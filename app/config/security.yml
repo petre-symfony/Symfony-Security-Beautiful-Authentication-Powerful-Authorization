@@ -25,3 +25,5 @@ security:
       guard:
         authenticators:
           - app.security.login_form_authenticator
+      logout:
+        path: /logout
