@@ -54,13 +54,17 @@ class User implements UserInterface{
   }
   public function setPlainPassword($plainPassword){
     return $this->plainPassword = $plainPassword;
+    
+    // forces the object to look "dirty" to Doctrine. Avoids
+    // Doctrine *not* saving this entity, if only plainPassword changes
+    $this->password = null;
   }
 
   public function getSalt() {
     
   }
   public function eraseCredentials() {
-    ;
+    $this->plainPassword = null;
   }
   
   public function setEmail($email) {
