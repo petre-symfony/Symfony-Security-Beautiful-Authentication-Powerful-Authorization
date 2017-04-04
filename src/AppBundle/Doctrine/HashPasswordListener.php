@@ -5,6 +5,7 @@ namespace AppBundle\Doctrine;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use AppBundle\Entity\User;
 
 class HashPasswordListener implements EventSubscriber{
   private $passwordEncoder;
@@ -19,7 +20,7 @@ class HashPasswordListener implements EventSubscriber{
   
   public function prePersist(LifecycleEventArgs $args){
     $entity = $args->getEntity();
-    if (!entity instanceof User){
+    if (!$entity instanceof User){
       return;
     }
     
