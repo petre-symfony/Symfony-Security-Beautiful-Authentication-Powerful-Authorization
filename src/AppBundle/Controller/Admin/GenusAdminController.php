@@ -10,12 +10,12 @@ use Symfony\Component\HttpFoundation\Request;
 USE Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
+ * @Security("is_granted('ROLE_ADMIN')")
  * @Route("/admin")
  */
 class GenusAdminController extends Controller {
   /**
    * @Route("/genus", name="admin_genus_list")
-   * @Security("is_granted('ROLE_ADMIN')")
    */
   public function indexAction() {
     $this->denyAccessUnlessGranted('ROLE_ADMIN');
