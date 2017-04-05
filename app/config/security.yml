@@ -1,11 +1,12 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
-
+  encoders:
+    AppBundle\Entity\User: bcrypt
   # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
   providers:
-    in_memory:
-      memory: ~
+    our_users:
+      entity: { class: AppBundle\Entity\User, property: email }
 
   firewalls:
     # disables authentication for assets and the profiler, adapt it according to your needs
@@ -22,3 +23,11 @@ security:
 
       # form_login: ~
       # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+      guard:
+        authenticators:
+          - app.security.login_form_authenticator
+      logout:
+        path: /logout
+        
+  access_control:
+    # - { path: ^/admin, roles: ROLE_ADMIN }
