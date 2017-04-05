@@ -1,13 +1,21 @@
 <?php
 
 namespace AppBundle\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class UserController {
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Form\UserRegistrationForm;
+
+class UserController extends Controller{
   /**
    * @ROUTE("/register", name="user_register")
    */
-  public function registerAction(){
+  public function registerAction(Request $request){
+    $form = $this->createForm(UserRegistrationForm::class);  
     
+    return $this->render('user/register.html.twig', [
+      'form' => $form->createView()    
+    ]);
   }
 }
