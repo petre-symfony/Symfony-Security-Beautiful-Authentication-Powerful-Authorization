@@ -7,8 +7,12 @@
         <h1>Register!</h1>
         {{ form_start(form) }}
           {{ form_row(form.email) }}
-          {{ form_row(form.plainPassword.first) }}
-          {{ form_row(form.plainPassword.second) }}
+          {{ form_row(form.plainPassword.first, {
+            'label': 'Password'
+          }) }}
+          {{ form_row(form.plainPassword.second, {
+            'label': 'Repeat Password'
+          }) }}
           
           <button type="submit" class="btn btn-primary" formnovalidate>Register</button>
         {{ form_end(form) }}
