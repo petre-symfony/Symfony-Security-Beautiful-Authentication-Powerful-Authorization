@@ -25,7 +25,12 @@ class UserController extends Controller{
       
       $this->addFlash('success', 'Welcome '.$user->getEmail());
       
-      return $this->redirectToRoute('homepage');
+      return $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess(
+        $user,
+        $request,
+        $this->get('app.security.login_form_authenticator'),
+        'main'      
+      );
     }
     
     return $this->render('user/register.html.twig', [
