@@ -37,7 +37,7 @@ class User implements UserInterface{
   
   /**
    * A non-persisted field that's used to create the encoded password
-   * @Assert\NotBlank()
+   * @Assert\NotBlank(groups={"Registration"})
    * @var string
    */
   private $plainPassword;
